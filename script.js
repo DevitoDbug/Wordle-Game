@@ -11,7 +11,7 @@ inputs.forEach( function(input , index){
         if (input.value.length === 1){
             //checking to see if only one character has been entered
             if(index <= numberOfInputs-1){
-                if(index != 29)
+                if(index != 29)//the is no next input after postion 30
                 inputs[index + 1].focus();
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
