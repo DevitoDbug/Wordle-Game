@@ -1,9 +1,35 @@
 const inputs = document.querySelectorAll(".wordle__input");
+
+let WORD = 'SPOON';
+
 let numberOfInputs = inputs.length;
 let inputValues = '';
 
+
+function validateLetterPosition(){
+
+}
+function solved(){
+    alert("You have gotten the correct word");
+}
+function validateEachletter(word){
+    let i,j;
+    let validIndexes='';
+    for(i = 0 ; i < WORD.length ; i++){
+        for(j = 0 ; j < word.length ;j++){
+            if(WORD[i] == word[j]){
+                validIndexes +=j;//storing the index of the corrext letter
+            }
+        } 
+    }
+    validateLetterPosition();
+}
 function validateInputs(something){
-    console.log(something);
+    if(something === WORD){
+        solved();
+    }else{
+        validateEachletter(something);
+    }
 }
 inputs.forEach( function(input , index){
     input.addEventListener("input" ,function(){
