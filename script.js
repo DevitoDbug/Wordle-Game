@@ -1,28 +1,45 @@
 const inputs = document.querySelectorAll(".wordle__input");
 
 let WORD = 'SPOON';
+let validIndexes='';
+let validIndexesPositions = '';
 
 let numberOfInputs = inputs.length;
 let inputValues = '';
 
+/**
+ * 
+ * we check to see if that valid letter is in the right position and record that position
+ */
 
 function validateLetterPosition(){
-
+    //checking if the correct letters are also in the correct position
+    let i;
+    for(i=0 ; i < validIndexes.length ; i++){
+        if (WORD[i].toLowerCase() === inputValues[i].toLowerCase()){
+            validIndexesPositions += i ;
+        }
+    }
 }
 function solved(){
     alert("You have gotten the correct word");
 }
+/**
+ * 
+ * @param {input from the user} word 
+ * 
+ * try to find any letter that can also be found on the solution
+ */
 function validateEachletter(word){
     let i,j;
-    let validIndexes='';
     for(i = 0 ; i < WORD.length ; i++){
         for(j = 0 ; j < word.length ;j++){
-            if(WORD[i] == word[j]){
-                validIndexes +=j;//storing the index of the corrext letter
+            if(WORD[i].toLowerCase() === word[j].toLowerCase()){
+                validIndexes +=j;
             }
         } 
     }
-    validateLetterPosition();
+    validateLetterPosition(validIndexes);
 }
 function validateInputs(something){
     if(something === WORD){
@@ -42,8 +59,10 @@ inputs.forEach( function(input , index){
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
                     validateInputs(inputValues);
-                    console.log(index);
+                    console.log(validIndexes, validIndexesPositions);
                     inputValues = '';
+                    validIndexes='';
+                    validIndexesPositions = '';
                 }
             }
         }
