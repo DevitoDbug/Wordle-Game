@@ -1,3 +1,4 @@
+const WORD_URL = '';
 const inputs = document.querySelectorAll(".wordle__input");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
@@ -9,6 +10,12 @@ let inputValues = '';
 
 let rowPosition = 0 ;
 
+
+async function fetchWord(){
+    const promise = await fetch(WORD_URL);
+    const word = JSON.parse(promise);
+
+}
 
 function initialize(){
     for(i = 0 ; i < inputs.length ; i++){
@@ -53,7 +60,7 @@ function solved(){
         inputs[i+rowPosition].style.color = 'white';
         inputs[i+rowPosition].style.transform= 'scale(1.4)';
         inputs[i+rowPosition].style.zIndex ="5000";
-    }
+    }   
     inputs.forEach(input =>{
         input.disabled =true;
     })   
@@ -104,3 +111,4 @@ inputs.forEach( function(input , index){
         }
     })
 })
+ fetchWord();
