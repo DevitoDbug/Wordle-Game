@@ -122,7 +122,7 @@ async function validateInputs(something){
     }else if (checker === false){
         alert("Come on! That is not a real word");
     }else{
-        alert("An error occured");
+        alert("An error occured! Check your internet connection");
     }
     
 }
@@ -153,9 +153,12 @@ inputs.forEach( function(input , index){
                     loading(true);
                     await validateInputs(inputValues.toLowerCase());
                    
-                    if ( isSolved === false)
-                    loading(false);
-                    
+                    if ( isSolved === false){
+                        loading(false);
+                    }else{
+                        animate.style.color ="#f1f1f1";
+                    }
+
                     rowPosition+=5;
                     inputValues = '';
                     validIndexes='';

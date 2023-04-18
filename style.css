@@ -22,9 +22,41 @@ body{
   box-shadow: 0 2px 5px rgb(0,0,0,0.3) ;
 }
 .wordle__title{
+  width: 100%;
+  
   font-size: 1rem;
   font-weight: 700;
   color: #000;
+  font-family: 'Courier New', Courier, monospace;
+}
+.wordle_header{
+  text-align: center;
+}
+.game_pad_ic{
+  font-size: 3rem;
+  justify-items: right;
+
+  position: relative;
+  animation: move-up-down 1s infinite;
+}
+
+@keyframes move-up-down {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.wordle__title_game{
+  background-color: black;
+  color:cyan;
+  border-radius: 5px;
+  padding-left: 10px;
 }
 .wordle__content{
     font-size: 1.5rem;
@@ -62,7 +94,7 @@ body{
   margin-bottom: 1rem;
   padding:0;
   border: 0;
-  animation: loading 2s ease-in-out infinite ;
+  animation: loading 1.0s ease-in-out infinite ;
 }
 @keyframes loading {
   to{
