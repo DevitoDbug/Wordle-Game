@@ -18,5 +18,5 @@ This game was created using HTML, CSS, and JavaScript. It fetches the word of th
 
 ## Screenshot
 ![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image1.0.jpg?raw=true)
-![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image2.0jpg?raw=true)
+![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image2.0.jpg?raw=true)
 
