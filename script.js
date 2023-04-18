@@ -1,6 +1,7 @@
 const WORD_URL = "https://words.dev-apis.com/word-of-the-day"
 const WORD_Validation_URL = "https://words.dev-apis.com/validate-word"
 const inputs = document.querySelectorAll(".wordle__input");
+const animate = document.querySelector(".load");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
 let validIndexes='';
@@ -10,6 +11,8 @@ let numberOfInputs = inputs.length;
 let inputValues = '';
 
 let rowPosition = 0 ;
+
+let isSolved = false;
 
 
 async function wordValidation(word){
@@ -82,7 +85,8 @@ function solved(){
     }   
     inputs.forEach(input =>{
         input.disabled =true;
-    })   
+    })  
+    isSolved = true; 
 }
 /**
  * 
@@ -115,13 +119,25 @@ async function validateInputs(something){
             validateEachletter(something);
         }
         colorBoxes();
-         rowPosition+=5;
     }else if (checker === false){
         alert("Come on! That is not a real word");
     }else{
         alert("An error occured");
     }
     
+}
+function loading(start){
+    if (start === true){
+        animate.style.color = 'cyan'
+        inputs.forEach(input =>{
+            input.disabled =true;
+        })  
+    }else if (start ===  false){
+        animate.style.color = '#f1f1f1'
+        inputs.forEach(input =>{
+            input.disabled =false;
+        })  
+    }
 }
 inputs.forEach( function(input , index){
     input.addEventListener("input" ,async function(){
@@ -134,8 +150,13 @@ inputs.forEach( function(input , index){
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
                     console.log("The user has entered: ",inputValues);
+                    loading(true);
                     await validateInputs(inputValues.toLowerCase());
-                    console.log("We will now erase the values: ",inputValues);
+                   
+                    if ( isSolved === false)
+                    loading(false);
+                    
+                    rowPosition+=5;
                     inputValues = '';
                     validIndexes='';
                     validIndexesPositions = '';

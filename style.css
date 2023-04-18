@@ -25,7 +25,6 @@ body{
   font-size: 1rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 1rem;
 }
 .wordle__content{
     font-size: 1.5rem;
@@ -55,4 +54,18 @@ body{
   font-weight: bold;
   border: 2px solid cyan;
   z-index: 5000px;
+}
+.load{
+  color: #f1f1f1;
+  font-size: 30px;
+  background-color: #f1f1f1;
+  margin-bottom: 1rem;
+  padding:0;
+  border: 0;
+  animation: loading 2s ease-in-out infinite ;
+}
+@keyframes loading {
+  to{
+    transform: rotate(360deg);
+  }
 }
