@@ -12,8 +12,8 @@ let rowPosition = 0 ;
 
 
 async function fetchWord(){
-    const parse = await fetch(WORD_URL);
-    const processedPromise = await parse.json();
+    const promise = await fetch(WORD_URL);
+    const processedPromise = await promise.json();
     WORD =processedPromise.word;
     console.log(WORD);
 }
