@@ -65,6 +65,7 @@ function solved(){
     inputs.forEach(input =>{
         input.disabled =true;
     })   
+    alert("You win🥳🥳🥳🥳🥳");
 }
 /**
  * 
