@@ -1,4 +1,4 @@
-const WORD_URL = '';
+const WORD_URL = "https://words.dev-apis.com/word-of-the-day"
 const inputs = document.querySelectorAll(".wordle__input");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
@@ -12,9 +12,10 @@ let rowPosition = 0 ;
 
 
 async function fetchWord(){
-    const promise = await fetch(WORD_URL);
-    const word = JSON.parse(promise);
-
+    const parse = await fetch(WORD_URL);
+    const processedPromise = await parse.json();
+    WORD =processedPromise.word;
+    console.log(WORD);
 }
 
 function initialize(){
