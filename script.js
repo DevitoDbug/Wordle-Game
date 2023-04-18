@@ -1,4 +1,5 @@
 const WORD_URL = "https://words.dev-apis.com/word-of-the-day"
+const WORD_Validation_URL = "https://words.dev-apis.com/validate-word"
 const inputs = document.querySelectorAll(".wordle__input");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
@@ -11,6 +12,23 @@ let inputValues = '';
 let rowPosition = 0 ;
 
 
+async function wordValidation(word){
+    const body = { word: word };
+    const options = {
+        method: "POST",
+        body: JSON.stringify(body)
+    };
+
+    try {
+        const response = await fetch(WORD_Validation_URL, options);
+        const data = await response.json();
+        return data.validWord;
+    } catch (error) {
+        console.error("Error validating word:", error);
+        return null;
+    }
+
+}
 async function fetchWord(){
     const promise = await fetch(WORD_URL);
     const processedPromise = await promise.json();
@@ -39,16 +57,16 @@ function colorBoxes(){
         }
     }   
 }
+
 /**
  * 
  * we check to see if that valid letter is in the right position and record that position
  */
-
 function validateLetterPosition(){
     //checking if the correct letters are also in the correct position
     let i;
     for(i=0 ; i < validIndexes.length ; i++){
-        if (WORD[parseInt(validIndexes[i])]=== inputValues[parseInt(validIndexes[i])]){
+        if (WORD[parseInt(validIndexes[i])] === inputValues[parseInt(validIndexes[i])]){
             console.log(WORD[parseInt(validIndexes[i])] ,inputValues[parseInt(validIndexes[i])])
             validIndexesPositions += validIndexes[i] ;
         }
@@ -82,20 +100,31 @@ function validateEachletter(word){
             }
         } 
     }
-    validateLetterPosition(validIndexes);
+    validateLetterPosition();
 }
-function validateInputs(something){
-    if(something === WORD){
-        solved();
-        setTimeout(function() {
-            alert("You have won!!!🥳🥳🥳🥳🥳🥳");
-          }, 1000);
+async function validateInputs(something){
+    console.log(await wordValidation(something));
+    let checker = await wordValidation(something);
+    if(checker === true){
+        if(something === WORD){
+            solved();
+            setTimeout(function() {
+                alert("You have won!!!🥳🥳🥳🥳🥳🥳");
+              }, 1000);
+        }else{
+            validateEachletter(something);
+        }
+        colorBoxes();
+         rowPosition+=5;
+    }else if (checker === false){
+        alert("Come on! That is not a real word");
     }else{
-        validateEachletter(something);
+        alert("An error occured");
     }
+    
 }
 inputs.forEach( function(input , index){
-    input.addEventListener("input" ,function(){
+    input.addEventListener("input" ,async function(){
         inputValues += input.value;
         if (input.value.length === 1){
             //checking to see if only one character has been entered
@@ -104,9 +133,9 @@ inputs.forEach( function(input , index){
                 inputs[index + 1].focus();
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
-                    validateInputs(inputValues.toLowerCase());
-                    colorBoxes();
-                    rowPosition+=5;
+                    console.log("The user has entered: ",inputValues);
+                    await validateInputs(inputValues.toLowerCase());
+                    console.log("We will now erase the values: ",inputValues);
                     inputValues = '';
                     validIndexes='';
                     validIndexesPositions = '';
