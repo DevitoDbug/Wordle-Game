@@ -65,7 +65,6 @@ function solved(){
     inputs.forEach(input =>{
         input.disabled =true;
     })   
-    alert("You win🥳🥳🥳🥳🥳");
 }
 /**
  * 
@@ -88,6 +87,9 @@ function validateEachletter(word){
 function validateInputs(something){
     if(something === WORD){
         solved();
+        setTimeout(function() {
+            alert("You have won!!!🥳🥳🥳🥳🥳🥳");
+          }, 1000);
     }else{
         validateEachletter(something);
     }
