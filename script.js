@@ -131,7 +131,6 @@ async function validateInputs(something){
     }else{
         alert("An error occured! Check your internet connection");
     }
-    
 }
 function loading(start){
     if (start === true){
