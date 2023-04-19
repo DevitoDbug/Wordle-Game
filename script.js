@@ -6,7 +6,7 @@ const animate = document.querySelector(".load");
 let WORD = 'SPOON'.toLocaleLowerCase();
 let WORD_parts = WORD.split("");
 let validIndexes='';
-let validIndexesPositions = "";
+let validIndexesPositions = '';
 
 let numberOfInputs = inputs.length;
 let inputValues = '';
@@ -52,18 +52,17 @@ function initialize(){
     }
 }
 function colorBoxes(){
+    console.log("The green:",validIndexesPositions);
+    console.log("The yellow:",validIndexes);  
+    for(i = 0 ; i < validIndexesPositions.length ; i++){
+            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.backgroundColor = 'green';
+            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.color = ' antiquewhite';
+            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.fontWeight = 'bold';
+    }
     for(i = 0 ; i < validIndexes.length ; i++){
-        console.log(rowPosition);
-        //before we colour a given box the first if checks if the position is correct
-        if (validIndexesPositions.includes(validIndexes[i])){
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.backgroundColor = 'green';
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.color = ' antiquewhite';
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.fontWeight = 'bold';
-        }else{
             inputs[parseInt(validIndexes[i]) + rowPosition].style.backgroundColor = 'yellow';
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.color = ' antiquewhite';
+            inputs[parseInt(validIndexes[i]) + rowPosition].style.color = ' black';
             inputs[parseInt(validIndexes[i]) + rowPosition].style.fontWeight = 'bold';
-        }
     }   
 }
 
@@ -71,17 +70,6 @@ function colorBoxes(){
  * 
  * we check to see if that valid letter is in the right position and record that position
  */
-function validateLetterPosition(){
-    //checking if the correct letters are also in the correct position
-    let i;
-    for(i=0 ; i < validIndexes.length ; i++){
-        if (WORD[parseInt(validIndexes[i])] === inputValues[parseInt(validIndexes[i])]){
-            console.log(WORD[parseInt(validIndexes[i])] ,inputValues[parseInt(validIndexes[i])])
-            validIndexesPositions += validIndexes[i] ;
-        }
-    }
-    console.log("Valid indexes: "+validIndexes , "ValidIndexPositions: "+validIndexesPositions);
-}
 function solved(){
     for(i = 0 ; i < 5 ; i++){
         inputs[i+rowPosition].style.backgroundColor = 'green';
@@ -101,16 +89,31 @@ function solved(){
  * try to find any letter that can also be found on the solution
  */
 function validateEachletter(word){
-    let i,j;
-    for(i = 0 ; i < WORD.length ; i++){
-        for(j = 0 ; j < word.length ;j++){
-            console.log(WORD,word);
-            if(WORD[i] === word[j]){
-                validIndexes +=j;
+    let obj = makeMap(WORD);
+    //getting indexes of letters that are correct and in the right position
+    for (i = 0 ; i < word.length ; i++){
+            if (WORD[i] === word[i]){
+                validIndexesPositions += i;
+            } 
+    }  
+    
+    //getting indexes of letters that are correct but in the wrong positon
+    for (i = 0 ; i < word.length ; i++){
+            if (WORD[i] === word[i]){
+                //removing the correct letter from the letters to compare with
+                obj[word[i]]--;
+            }else{
+                console.log(obj);
+                console.log(obj[word[i]]);
+                if (obj[word[i]]){
+                    //the letter is correct but in a wrong position
+                    obj[word[i]]--;
+                    validIndexes += i;
+                }else{
+                    //do nothing the letter is wrong
+                }
             }
-        } 
-    }
-    validateLetterPosition();
+    } 
 }
 async function validateInputs(something){
     console.log(await wordValidation(something));
@@ -179,27 +182,40 @@ inputs.forEach( function(input , index){
 /**
  *below are experiments 
  */
-let exp_validIndexes = "";
 
-const exp_input = "spoon"
-const exp_input_parts = exp_input.split("");
 
-const exp_expected = "spnok"
-const exp_expected_part= exp_expected.split("");
+// function ex_validateEachletter(word){
+//     let obj = makeMap(exp_expected);
+//     let correctIndex = "";
+//     let wrongIndex ="";
+//     //getting the letters that are correct and in the correct position
+//     for (i = 0 ; i < word.length ; i++){
+//             if (exp_expected[i] === word[i] ){
+//                 correctIndex += i;
+//             } 
+//     }  
+    
+//     //marking the correct but wrong positon and the wrong 
+//     for (i = 0 ; i < word.length ; i++){
+//             if (exp_expected[i] === word[i]){
+//                 //removing the correct letter from the letters to compare with
+//                 obj[word[i]]--;
+//             }else{
+//                 console.log(obj);
+//                 console.log(obj[word[i]]);
+//                 if (obj[word[i]]){
+//                     //the letter is correct but in a wrong position
+//                     wrongIndex+= i;
+//                 }else{
+//                     //do nothing the letter is wrong
+//                 }
+//             }
+//     } 
+//     console.log("The green:",correctIndex);
+//     console.log("The yellow:",wrongIndex)  
+// }
 
-function ex_validateEachletter(word){
-    let obj = makeMap(exp_expected);
-    const correctIndex = "";
-    for (i = 0 ; i < word.length ; i++){
-        for (j = 0 ; j < word.length ; j++){
-            if (word[i] === exp_expected[i]){
-                correctIndex += i;
-            }
-        }  
-    }   
-   
-}
-
+//utility function
 function makeMap(array){
     const obj = {};
     for(i = 0 ; i < array.length ; i++){
@@ -213,6 +229,4 @@ function makeMap(array){
     return obj;
 }
 
-ex_validateEachletter(exp_input);
-
-/* fetchWord();*/
+fetchWord();
