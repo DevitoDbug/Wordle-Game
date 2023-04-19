@@ -21,6 +21,8 @@ This game was created using HTML, CSS, and JavaScript. It fetches the word of th
 4. Check if the user's guess is a valid English five-letter word before validating the guess
 
 ## Screenshot
-![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image1.0.jpg?raw=true)
-![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image1.2.jpg?raw=true)
+![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image2.0.jpg?raw=true)
+![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image2.1.jpg?raw=true)
+![screenshot](https://github.com/DevitoDbug/Wordle-Game/blob/master/screenshots/image2.2.jpg?raw=true)
+
 
