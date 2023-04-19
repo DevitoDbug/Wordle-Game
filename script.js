@@ -36,13 +36,11 @@ async function wordValidation(word){
         console.error("Error validating word:", error);
         return null;
     }
-
 }
 async function fetchWord(){
     const promise = await fetch(WORD_URL);
     const processedPromise = await promise.json();
     WORD =processedPromise.word;
-    console.log(WORD);
 }
 
 function initialize(){
@@ -161,13 +159,12 @@ inputs.forEach( function(input , index){
                     console.log("The user has entered: ",inputValues);
                     loading(true);
                     await validateInputs(inputValues.toLowerCase());
-                   
                     if ( isSolved === false){
                         loading(false);
                     }else{
                         animate.style.visibility ="hidden";
                     }
-
+                    inputs[index + 1].focus();
                     rowPosition+=5;
                     inputValues = '';
                     validIndexes='';
@@ -177,43 +174,6 @@ inputs.forEach( function(input , index){
         }
     })
 })
-
-/*TODO delete the function below */
-/**
- *below are experiments 
- */
-
-
-// function ex_validateEachletter(word){
-//     let obj = makeMap(exp_expected);
-//     let correctIndex = "";
-//     let wrongIndex ="";
-//     //getting the letters that are correct and in the correct position
-//     for (i = 0 ; i < word.length ; i++){
-//             if (exp_expected[i] === word[i] ){
-//                 correctIndex += i;
-//             } 
-//     }  
-    
-//     //marking the correct but wrong positon and the wrong 
-//     for (i = 0 ; i < word.length ; i++){
-//             if (exp_expected[i] === word[i]){
-//                 //removing the correct letter from the letters to compare with
-//                 obj[word[i]]--;
-//             }else{
-//                 console.log(obj);
-//                 console.log(obj[word[i]]);
-//                 if (obj[word[i]]){
-//                     //the letter is correct but in a wrong position
-//                     wrongIndex+= i;
-//                 }else{
-//                     //do nothing the letter is wrong
-//                 }
-//             }
-//     } 
-//     console.log("The green:",correctIndex);
-//     console.log("The yellow:",wrongIndex)  
-// }
 
 //utility function
 function makeMap(array){
