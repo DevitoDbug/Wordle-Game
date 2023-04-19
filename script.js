@@ -4,6 +4,7 @@ const inputs = document.querySelectorAll(".wordle__input");
 const animate = document.querySelector(".load");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
+let WORD_parts = WORD.split("");
 let validIndexes='';
 let validIndexesPositions = "";
 
@@ -14,7 +15,12 @@ let rowPosition = 0 ;
 
 let isSolved = false;
 
-
+/**
+ * 
+ * @param {input from the user} word 
+ * 
+ * uses the API to check if it is an existing correct five letter word
+ */
 async function wordValidation(word){
     const body = { word: word };
     const options = {
@@ -128,12 +134,12 @@ async function validateInputs(something){
 }
 function loading(start){
     if (start === true){
-        animate.style.color = 'cyan'
+        animate.style.visibility = 'visible'
         inputs.forEach(input =>{
             input.disabled =true;
         })  
     }else if (start ===  false){
-        animate.style.color = '#f1f1f1'
+        animate.style.visibility = 'hidden'
         inputs.forEach(input =>{
             input.disabled =false;
         })  
@@ -156,7 +162,7 @@ inputs.forEach( function(input , index){
                     if ( isSolved === false){
                         loading(false);
                     }else{
-                        animate.style.color ="#f1f1f1";
+                        animate.style.visibility ="hidden";
                     }
 
                     rowPosition+=5;
@@ -168,4 +174,45 @@ inputs.forEach( function(input , index){
         }
     })
 })
- fetchWord();
+
+/*TODO delete the function below */
+/**
+ *below are experiments 
+ */
+let exp_validIndexes = "";
+
+const exp_input = "spoon"
+const exp_input_parts = exp_input.split("");
+
+const exp_expected = "spnok"
+const exp_expected_part= exp_expected.split("");
+
+function ex_validateEachletter(word){
+    let obj = makeMap(exp_expected);
+    const correctIndex = "";
+    for (i = 0 ; i < word.length ; i++){
+        for (j = 0 ; j < word.length ; j++){
+            if (word[i] === exp_expected[i]){
+                correctIndex += i;
+            }
+        }  
+    }   
+   
+}
+
+function makeMap(array){
+    const obj = {};
+    for(i = 0 ; i < array.length ; i++){
+        const letter = array[i]
+        if (obj[letter]){
+            obj[letter]++;
+        }else{
+            obj[letter] = 1;
+        }
+    }
+    return obj;
+}
+
+ex_validateEachletter(exp_input);
+
+/* fetchWord();*/

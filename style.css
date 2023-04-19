@@ -59,11 +59,12 @@ body{
   padding-left: 10px;
 }
 .wordle__content{
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-    padding: 0;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  padding: 0;
 }
 .wordle-container-inputs{
   display: grid;
@@ -88,9 +89,14 @@ body{
   z-index: 5000px;
 }
 .load{
-  color: #f1f1f1;
-  font-size: 30px;
-  background-color: #f1f1f1;
+  visibility: hidden;
+  top: 50%;
+  left:50%;
+  position: absolute;
+  z-index: 10000;
+  color: cyan;
+  font-size: 40px;
+  background-color: none;
   margin-bottom: 1rem;
   padding:0;
   border: 0;
