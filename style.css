@@ -112,7 +112,6 @@ body{
   color: antiquewhite;
   background-color: green;
   font-weight: bold;
-  transform: scale(1.4);
   z-index: 5000;
 }
 .yellowHightlights{

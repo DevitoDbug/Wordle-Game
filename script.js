@@ -67,6 +67,7 @@ function colorBoxes(){
 function solved(){
     for(i = 0 ; i < 5 ; i++){
         inputs[i+rowPosition].classList.add('greenHighlights');
+        inputs[i+rowPosition].style.transform = "scale(1.4)"
     }   
     inputs.forEach(input =>{
         input.disabled =true;
