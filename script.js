@@ -53,14 +53,10 @@ function colorBoxes(){
     console.log("The green:",validIndexesPositions);
     console.log("The yellow:",validIndexes);  
     for(i = 0 ; i < validIndexesPositions.length ; i++){
-            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.backgroundColor = 'green';
-            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.color = ' antiquewhite';
-            inputs[parseInt(validIndexesPositions[i]) + rowPosition].style.fontWeight = 'bold';
+            inputs[parseInt(validIndexesPositions[i]) + rowPosition].classList.add('greenHighlights');
     }
     for(i = 0 ; i < validIndexes.length ; i++){
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.backgroundColor = 'yellow';
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.color = ' black';
-            inputs[parseInt(validIndexes[i]) + rowPosition].style.fontWeight = 'bold';
+            inputs[parseInt(validIndexes[i]) + rowPosition].classList.add ('yellowHightlights');
     }   
 }
 
@@ -70,10 +66,7 @@ function colorBoxes(){
  */
 function solved(){
     for(i = 0 ; i < 5 ; i++){
-        inputs[i+rowPosition].style.backgroundColor = 'green';
-        inputs[i+rowPosition].style.color = 'white';
-        inputs[i+rowPosition].style.transform= 'scale(1.4)';
-        inputs[i+rowPosition].style.zIndex ="5000";
+        inputs[i+rowPosition].classList.add('greenHighlights');
     }   
     inputs.forEach(input =>{
         input.disabled =true;

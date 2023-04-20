@@ -107,3 +107,16 @@ body{
     transform: rotate(360deg);
   }
 }
+/*Clouring of the boxes*/
+.greenHighlights{
+  color: antiquewhite;
+  background-color: green;
+  font-weight: bold;
+  transform: scale(1.4);
+  z-index: 5000;
+}
+.yellowHightlights{
+  color: black;
+  background-color: yellow;
+  font-weight: bold;
+}
