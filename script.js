@@ -93,14 +93,11 @@ function validateEachletter(word){
     //getting indexes of letters that are correct but in the wrong positon
     for (i = 0 ; i < word.length ; i++){
             if (WORD[i] === word[i]){
-                //removing the correct letter from the letters to compare with
-                obj[word[i]]--;
+                //do nothing
             }else{
-                console.log(obj);
-                console.log(obj[word[i]]);
                 if (obj[word[i]]){
                     //the letter is correct but in a wrong position
-                    obj[word[i]]--;
+                    obj[WORD[i]]--;
                     validIndexes += i;
                 }else{
                     //do nothing the letter is wrong
