@@ -2,6 +2,9 @@ const WORD_URL = "https://words.dev-apis.com/word-of-the-day"
 const WORD_Validation_URL = "https://words.dev-apis.com/validate-word"
 const inputs = document.querySelectorAll(".wordle__input");
 const animate = document.querySelector(".load");
+const infoText = document.querySelector(".info");
+const infoIcon =document.querySelector("#infoID");
+const refreshIcon = document.querySelector("#refreshID");
 
 let WORD = 'SPOON'.toLocaleLowerCase();
 let WORD_parts = WORD.split("");
@@ -179,4 +182,29 @@ function makeMap(array){
     }
     return obj;
 }
+
+//Adding event listener to the info icon
+document.addEventListener("click" , function(event){
+    if (event.target === infoIcon){
+        infoText.style.visibility = infoText.style.visibility === "hidden" ? "visible": "hidden";
+    }else{
+        infoText.style.visibility = "hidden"; 
+    }
+});
+
+function refreshPage(){
+    inputs.forEach(input =>{
+        input.value = '';
+    })  
+    rowPosition+=0;
+    inputValues = '';
+    validIndexes='';
+    validIndexesPositions = '';
+}
+
+//adding event listener to the refresh button
+refreshIcon.addEventListener("click", function (){
+    refreshPage();
+})
+
 fetchWord();

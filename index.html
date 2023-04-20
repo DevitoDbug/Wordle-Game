@@ -12,7 +12,12 @@
     <div class="container">
         <div class="wordle">
             <nav class ="nav-bar">
-                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <div class = "nav-ic icon-1"><i class="fa fa-refresh" id="refreshID" aria-hidden="true"></i></div>
+                <div class = "nav-ic icon-2"><i class="fa fa-question-circle" id="infoID" aria-hidden="true"></i></div>
+                <div class="info">
+                    <p class="green-highlight"> If the player guesses a letter that is in the right place.</p>
+                    <p class="yellow-highlight"> If the player guesses a letter that is in the word but not in the right place.</p>
+                </div>
             </nav>
             <div class="wordle__title">
                 <h1 class ="wordle_header">Wordle <span class = "wordle__title_game">Game!</span>
