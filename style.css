@@ -124,7 +124,6 @@ body{
   background-color: yellow;
   font-weight: bold;
 }
-
 @media(max-width: 450px){
   .wordle{
     height: 65%;

@@ -181,5 +181,4 @@ function makeMap(array){
     }
     return obj;
 }
-
 fetchWord();
