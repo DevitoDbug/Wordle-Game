@@ -86,6 +86,7 @@ function validateEachletter(word){
     for (i = 0 ; i < word.length ; i++){
             if (WORD[i] === word[i]){
                 validIndexesPositions += i;
+                obj[word[i]]--;
             } 
     }  
     
