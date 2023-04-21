@@ -156,7 +156,8 @@ body{
   justify-content: left;
   text-align: center;
   visibility: hidden;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .green-highlight::before{
   content: " ";
