@@ -6,7 +6,7 @@ const infoText = document.querySelector(".info");
 const infoIcon =document.querySelector("#infoID");
 const refreshIcon = document.querySelector("#refreshID");
 
-let WORD = 'SPOON'.toLocaleLowerCase();
+let WORD = '';
 let WORD_parts = WORD.split("");
 let validIndexes='';
 let validIndexesPositions = '';
@@ -53,8 +53,6 @@ function initialize(){
     }
 }
 function colorBoxes(){
-    console.log("The green:",validIndexesPositions);
-    console.log("The yellow:",validIndexes);  
     for(i = 0 ; i < validIndexesPositions.length ; i++){
             inputs[parseInt(validIndexesPositions[i]) + rowPosition].classList.add('greenHighlights');
     }
@@ -109,7 +107,6 @@ function validateEachletter(word){
     } 
 }
 async function validateInputs(something){
-    console.log(await wordValidation(something));
     let checker = await wordValidation(something);
     if(checker === true){
         if(something === WORD){
@@ -124,7 +121,7 @@ async function validateInputs(something){
     }else if (checker === false){
         alert("Come on! That is not a real word");
     }else{
-        alert("An error occured! Check your internet connection");
+        alert("An error occurred! Check your internet connection");
     }
 }
 function loading(start){
@@ -140,17 +137,28 @@ function loading(start){
         })  
     }
 }
+function youLose(){
+    inputs.forEach(input =>{
+        input.disabled =true;
+    }) 
+}
+function disabledPreviousRows(){
+    inputs.forEach((input, index)=>{
+        if (index < (rowPosition))
+        input.disabled =true;
+    })  
+}
 inputs.forEach( function(input , index){
     input.addEventListener("input" ,async function(){
         inputValues += input.value;
         if (input.value.length === 1){
             //checking to see if only one character has been entered
-            if(index <= numberOfInputs-1){
+            console.log("the index is:",index,"the number of inputs is:",numberOfInputs);
+            if(index < numberOfInputs-1){
                 if(index != 29)//the is no next input after postion 30
                 inputs[index + 1].focus();
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
-                    console.log("The user has entered: ",inputValues);
                     loading(true);
                     await validateInputs(inputValues.toLowerCase());
                     if ( isSolved === false){
@@ -163,8 +171,12 @@ inputs.forEach( function(input , index){
                     inputValues = '';
                     validIndexes='';
                     validIndexesPositions = '';
+                    disabledPreviousRows();
                 }
             }
+            if (index >= 29){
+                youLose();
+            } 
         }
     })
 })
@@ -182,29 +194,21 @@ function makeMap(array){
     }
     return obj;
 }
-
 //Adding event listener to the info icon
 document.addEventListener("click" , function(event){
     if (event.target === infoIcon){
-        infoText.style.visibility = infoText.style.visibility === "hidden" ? "visible": "hidden";
+        infoText.style.visibility = infoText.style.visibility === "visible" ? "hidden": "visible";
+        infoIcon.style.color = "black";
     }else{
         infoText.style.visibility = "hidden"; 
+        infoIcon.style.color = "rgba(0, 0, 0, 0.671)";
+        refreshIcon.style.color = "rgba(0, 0, 0, 0.671)";
     }
 });
-
-function refreshPage(){
-    inputs.forEach(input =>{
-        input.value = '';
-    })  
-    rowPosition+=0;
-    inputValues = '';
-    validIndexes='';
-    validIndexesPositions = '';
-}
-
 //adding event listener to the refresh button
 refreshIcon.addEventListener("click", function (){
-    refreshPage();
+    refreshIcon.style.color = "black";
+    location.reload();
 })
 
 fetchWord();
