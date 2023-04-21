@@ -164,7 +164,8 @@ body{
   width: 15px;
   aspect-ratio: 1;
   background-color: green;
-  border: 1px black solid;
+  border: 2px black solid;
+  border-radius: 3px;
 }
 .yellow-highlight::before{
   content: " ";
@@ -172,7 +173,8 @@ body{
   width: 15px;
   aspect-ratio: 1;
   background-color: yellow;
-  border: 1px black solid;
+  border: 2px black solid;
+  border-radius: 3px;
 }
 .nav-ic{
   width: 20px;
