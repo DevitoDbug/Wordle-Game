@@ -156,6 +156,7 @@ body{
   justify-content: left;
   text-align: center;
   visibility: hidden;
+  font-size: 1rem;
 }
 .green-highlight::before{
   content: " ";
