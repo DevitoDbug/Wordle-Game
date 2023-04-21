@@ -164,6 +164,7 @@ body{
   width: 15px;
   aspect-ratio: 1;
   background-color: green;
+  border: 1px black solid;
 }
 .yellow-highlight::before{
   content: " ";
@@ -171,6 +172,7 @@ body{
   width: 15px;
   aspect-ratio: 1;
   background-color: yellow;
+  border: 1px black solid;
 }
 .nav-ic{
   width: 20px;
