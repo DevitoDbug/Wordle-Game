@@ -107,7 +107,8 @@ function validateEachletter(word){
     console.log("Valid index positions:",validIndexesPositions , " Valid indexes wrong position: ",validIndexes); 
 }
 async function validateInputs(something){
-    let checker = true/*await wordValidation(something);*/
+    let checker = true
+    await wordValidation(something);
     if(checker === true){
         if(something === WORD){
             solved();
@@ -212,4 +213,4 @@ refreshIcon.addEventListener("click", function (){
     location.reload();
 })
 
-/*fetchWord();*/
+fetchWord();
