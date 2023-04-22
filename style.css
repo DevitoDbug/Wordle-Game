@@ -180,6 +180,14 @@ body{
   border: 2px black solid;
   border-radius: 3px;
 }
+.red-highlight::before{
+  content: " ";
+  display: inline-block;
+  width: 15px;
+  aspect-ratio: 1;
+  border: 2px red solid;
+  border-radius: 3px;
+}
 .nav-ic{
   width: 20px;
 }
