@@ -188,9 +188,10 @@ body{
     height:65%;
     max-height: 600px;
     margin: 5%;
+    padding:20px
   }
   .container{
-    max-height: 700px;
+    max-height: 100vh;
   }
 }
 
@@ -204,11 +205,11 @@ body{
   }
 }
 
-
 @media (max-width: 450px) {
   .wordle{
     height: 90%;
     max-height: 400px;
+    padding:20px
   }
   .container{
     height: 100vh;
