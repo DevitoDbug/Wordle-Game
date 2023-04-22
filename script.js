@@ -6,9 +6,9 @@ const infoText = document.querySelector(".info");
 const infoIcon =document.querySelector("#infoID");
 const refreshIcon = document.querySelector("#refreshID");
 
-let WORD = '';
+let WORD = 'night';
 let WORD_parts = WORD.split("");
-let validIndexes='';
+let validIndexes ='';
 let validIndexesPositions = '';
 
 let numberOfInputs = inputs.length;
@@ -90,7 +90,6 @@ function validateEachletter(word){
                 obj[word[i]]--;
             } 
     }  
-    
     //getting indexes of letters that are correct but in the wrong positon
     for (i = 0 ; i < word.length ; i++){
             if (WORD[i] === word[i]){
@@ -98,16 +97,17 @@ function validateEachletter(word){
             }else{
                 if (obj[word[i]]){
                     //the letter is correct but in a wrong position
-                    obj[WORD[i]]--;
+                    obj[word[i]]--;
                     validIndexes += i;
                 }else{
                     //do nothing the letter is wrong
                 }
             }
-    } 
+    }
+    console.log("Valid index positions:",validIndexesPositions , " Valid indexes wrong position: ",validIndexes); 
 }
 async function validateInputs(something){
-    let checker = await wordValidation(something);
+    let checker = true/*await wordValidation(something);*/
     if(checker === true){
         if(something === WORD){
             solved();
@@ -153,7 +153,6 @@ inputs.forEach( function(input , index){
         inputValues += input.value;
         if (input.value.length === 1){
             //checking to see if only one character has been entered
-            console.log("the index is:",index,"the number of inputs is:",numberOfInputs);
             if(index < numberOfInputs-1){
                 if(index != 29)//the is no next input after postion 30
                 inputs[index + 1].focus();
@@ -211,4 +210,4 @@ refreshIcon.addEventListener("click", function (){
     location.reload();
 })
 
-fetchWord();
+/*fetchWord();*/
