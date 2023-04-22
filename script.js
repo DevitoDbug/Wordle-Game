@@ -153,9 +153,10 @@ inputs.forEach( function(input , index){
         inputValues += input.value;
         if (input.value.length === 1){
             //checking to see if only one character has been entered
-            if(index < numberOfInputs-1){
-                if(index != 29)//the is no next input after postion 30
-                inputs[index + 1].focus();
+            if(index <= numberOfInputs-1){
+                if(index != 29){//the is no next input after postion 30
+                inputs[index + 1].focus();}
+                inputs[index].disabled = true;
                 if ((index+1)%5 === 0){
                     //checking to see if we already have five values we can validate
                     loading(true);
@@ -165,6 +166,7 @@ inputs.forEach( function(input , index){
                     }else{
                         animate.style.visibility ="hidden";
                     }
+                    if(index != 29)
                     inputs[index + 1].focus();
                     rowPosition+=5;
                     inputValues = '';
