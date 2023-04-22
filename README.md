@@ -1,4 +1,5 @@
 # Wordle!
+## [CLick for demo](https://devitodbug.github.io/Wordle-Game/)
 Welcome to Wordle, a daily word guessing game where you try to guess the word of the day! Each day, a new word will be generated for you to guess, so make sure to come back and play every day.
 
 ## Installation
