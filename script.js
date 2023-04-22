@@ -106,9 +106,23 @@ function validateEachletter(word){
     }
     console.log("Valid index positions:",validIndexesPositions , " Valid indexes wrong position: ",validIndexes); 
 }
+function flash(){
+    inputs.forEach((input,index) =>{
+        if(index >= rowPosition && index < rowPosition+5){
+            input.classList.add("flashy");
+        }
+    })
+    setTimeout(function (){
+        inputs.forEach((input,index) =>{
+            if(index >= rowPosition && index < rowPosition+5){
+                input.classList.remove("flashy");
+            }
+        })
+    }, 50); 
+
+}
 async function validateInputs(something){
-    let checker = true
-    await wordValidation(something);
+    let checker = await wordValidation(something);
     if(checker === true){
         if(something === WORD){
             solved();
@@ -120,7 +134,7 @@ async function validateInputs(something){
         }
         colorBoxes();
     }else if (checker === false){
-        alert("Come on! That is not a real word");
+        flash();
     }else{
         alert("An error occurred! Check your internet connection");
     }

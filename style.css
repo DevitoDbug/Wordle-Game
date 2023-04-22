@@ -183,6 +183,23 @@ body{
 .nav-ic{
   width: 20px;
 }
+.flashy{
+  border: 2px solid rgba(255, 0, 0, 0.678);
+  animation: flash 1s 1;
+}
+
+@keyframes flash {
+  0%{
+    border-color: red;
+    opacity: 1;
+    scale: 1;
+  }
+  100%{
+    border-color: black;
+    opacity: 0;
+  }
+
+}
 @media (max-width: 500px) {
   .wordle{
     height:65%;
